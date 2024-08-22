@@ -61,6 +61,7 @@
   const makeTable = (d) => {
     const cr = (tag) => document.createElement(tag);
     const tbl = cr("table");
+    tbl.style.minWidth = "300px";
     for (const name in d) {
       const val = d[name];
       const tr = cr("tr");
