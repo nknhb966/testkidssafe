@@ -76,7 +76,7 @@
       // 画像データかどうかをチェック
       if (val.match(/\.(jpeg|jpg|gif|png|bmp)$/i)) {
         const img = cr("img");
-        img.src = `icon/${val}`; // 画像のパスを設定
+        img.src = `https://github.com/code4fukui/kidssafe-okamoto/tree/main/icon/${val}`; // 画像のパスを設定
         img.style.width = "100%"; // セル幅に合わせて画像を表示
         img.style.height = "auto"; // アスペクト比を保つ
         td.appendChild(img);
