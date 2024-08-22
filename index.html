@@ -107,12 +107,13 @@
     document.title = "テスト確認用地域安全マップ「キッズセーフ」";
 
     const header = document.createElement("header");
-    header.style.height = "56px";
+    header.style.height = "100px";
     header.style.margin = "0";
     header.style.display = "grid";
     header.style.gridTemplate =`
       "left-button subtitle right-button" 16px
-      "left-button title rigth-button" 24px
+      "left-button title right-button" 24px
+      "filter filter filter" auto
       / 56px 1fr 56px
     `;
     header.style.gap = "8px";
