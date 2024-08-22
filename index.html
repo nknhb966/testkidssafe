@@ -105,8 +105,8 @@ const makeTable = (d) => {
     if (val.match(/\.(jpeg|jpg|gif|png|bmp)$/i)) {
       const img = cr("img");
       img.src = `icon/${val}`; // 画像のパスを設定
-      img.style.maxWidth = "100px"; // 画像の最大幅を指定
-      img.style.maxHeight = "100px"; // 画像の最大高さを指定
+      img.style.maxWidth = "180px"; // 画像の最大幅を指定
+      img.style.maxHeight = "180px"; // 画像の最大高さを指定
       td.appendChild(img);
     } else if (val.match(/<a href=(.+)>(.+)<\/a>/)) {
       const n = val.match(/<a href=(.+)>(.+)<\/a>/);
