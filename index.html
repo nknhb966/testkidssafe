@@ -76,7 +76,7 @@
       // 画像データかどうかをチェック
       if (val.match(/\.(jpeg|jpg|gif|png|bmp)$/i)) {
         const img = cr("img");
-        img.src = `https://github.com/code4fukui/kidssafe-okamoto/tree/main/icon/${val}`; // 画像のパスを設定
+        img.src = `https://code4fukui.github.io/kidssafe-okamoto/icon/${val}`; // 画像のパスを設定
         img.style.width = "100%"; // セル幅に合わせて画像を表示
         img.style.height = "auto"; // アスペクト比を保つ
         td.appendChild(img);
@@ -142,7 +142,7 @@
     header.appendChild(menuButton);
 
     const menuIconImage = document.createElement("img");
-    menuIconImage.setAttribute("src", "./images/icon_menu.svg");
+    menuIconImage.setAttribute("src", "https://github.com/code4fukui/kidssafe-okamoto/tree/main/images/icon_menu.svg");
     menuIconImage.style.height = "40px";
     menuIconImage.style.width = "40px";
     menuButton.appendChild(menuIconImage);
@@ -205,7 +205,7 @@
     drawer.appendChild(closeMenuButton)
 
     const closeMenuIconImage = document.createElement("img");
-    closeMenuIconImage.setAttribute("src", "./images/icon_close.svg");
+    closeMenuIconImage.setAttribute("src", "https://github.com/code4fukui/kidssafe-okamoto/tree/main/images/icon_close.svg");
     closeMenuIconImage.style.height = "40px";
     closeMenuIconImage.style.width = "40px";
     closeMenuButton.appendChild(closeMenuIconImage);
@@ -253,7 +253,7 @@
       const makeIcon = async () => {
   const opt = {};
   try {
-    const icon = "./icon/" + (d.icon || icon0);
+    const icon = "https://code4fukui.github.io/kidssafe-okamoto/icon/" + (d.icon || icon0);
     const img = await getImageSize(icon);
     const size = getResized(img.width, img.height, 50);
     const iconw = size.width;
