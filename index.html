@@ -235,9 +235,26 @@
 
     const lls = [];
     const showIcons = async (list, icon0, addlayer = true) => {
+      const icon = "https://code4fukui.github.io/kidssafe-okamoto/icon/" + icon0;
       const iconlayer = L.layerGroup();
       if (addlayer) {
         iconlayer.addTo(map);
+      }
+      const opt = {};
+      try {
+        const img = await fetchImage(icon);
+        const size = getResized(img.width, img.height, 50);
+        const iconw = size.width;
+        const iconh = size.height;
+        opt.icon = L.icon({
+          iconUrl: icon,
+          iconRetilaUrl: icon,
+          iconSize: [iconw, iconh],
+          iconAnchor: [iconw / 2, iconh / 2],
+          popupAnchor: [0, -iconh / 2],
+        });
+      } catch (e) {
+        console.log("can't load: " + icon);
       }
       for (const d of list) {
         const getPos = () => {
@@ -248,33 +265,7 @@
           return [d.lat, d.lng];
         };
         const ll = getPos();
-        if (!ll[0]) return;
-
-      const makeIcon = async () => {
-  const opt = {};
-  try {
-    const icon = "https://code4fukui.github.io/kidssafe-okamoto/icon/" + (d.icon || icon0);
-    const img = await getImageSize(icon);
-    const size = getResized(img.width, img.height, 50);
-    const iconw = size.width;
-    const iconh = size.height;
-    opt.icon = L.icon({
-      iconUrl: icon,
-      iconRetilaUrl: icon,
-      iconSize: [iconw, iconh],
-      iconAnchor: [iconw / 2, iconh / 2],
-      popupAnchor: [0, -iconh / 2],
-    });
-  } catch (e) {
-    console.log("can't load: " + icon0);
-  }
-  return opt;
-};
-  const opt = await makeIcon();
         const marker = L.marker(ll, opt);
-        marker.data = d;
-        marker.layer = iconlayer;
-        icons.push(marker);
         const tbl = makeTable(d);
         tbl.className = "mapinfo";
         marker.bindPopup(tbl.outerHTML); // `<img width="300px" src=${path}>`);
@@ -283,6 +274,7 @@
       }
       return iconlayer;
     };
+
     const showPoints = async (list, color) => {
       const iconlayer = L.layerGroup();
       iconlayer.addTo(map);
