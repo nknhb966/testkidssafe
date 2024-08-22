@@ -57,72 +57,44 @@
       return { width: (min * w) / h, height: min };
     }
   };
-  // const makeTable = (d) => {
-  //   const cr = (tag) => document.createElement(tag);
-  //   const tbl = cr("table");
-  //   for (const name in d) {
-  //     const val = d[name];
-  //     const tr = cr("tr");
-  //     tbl.appendChild(tr);
-  //     const th = cr("th");
-  //     th.textContent = name;
-  //     th.style.whiteSpace = "nowrap";
-  //     tr.appendChild(th);
-  //     const td = cr("td");
-  //     td.style.minWidth = "8em";
-  //     td.style.wordBreak = "break-all";
-  //     const n = val.match(/<a href=(.+)>(.+)<\/a>/);
-  //     if (n) {
-  //       const url = n[1];
-  //       const cap = n[2];
-  //       td.innerHTML = `<a href=${url}>${cap}</a>`;
-  //     } else if (val.startsWith("https://") || val.startsWith("http://")) {
-  //       td.innerHTML = `<a href=${val}>詳細</a>`;
-  //     } else {
-  //       td.textContent = val;
-  //     }
-  //     tr.appendChild(td);
-  //   }
-  //   return tbl;
-  // };
 
-const makeTable = (d) => {
-  const cr = (tag) => document.createElement(tag);
-  const tbl = cr("table");
-  for (const name in d) {
-    const val = d[name];
-    const tr = cr("tr");
-    tbl.appendChild(tr);
-    const th = cr("th");
-    th.textContent = name;
-    th.style.whiteSpace = "nowrap";
-    tr.appendChild(th);
-    const td = cr("td");
-    td.style.minWidth = "8em";
-    td.style.wordBreak = "break-all";
-    
-    // 画像データかどうかをチェック
-    if (val.match(/\.(jpeg|jpg|gif|png|bmp)$/i)) {
-      const img = cr("img");
-      img.src = `icon/${val}`; // 画像のパスを設定
-      img.style.maxWidth = "480px"; // 画像の最大幅を指定
-      img.style.maxHeight = "270px"; // 画像の最大高さを指定
-      td.appendChild(img);
-    } else if (val.match(/<a href=(.+)>(.+)<\/a>/)) {
-      const n = val.match(/<a href=(.+)>(.+)<\/a>/);
-      const url = n[1];
-      const cap = n[2];
-      td.innerHTML = `<a href=${url}>${cap}</a>`;
-    } else if (val.startsWith("https://") || val.startsWith("http://")) {
-      td.innerHTML = `<a href=${val}>詳細</a>`;
-    } else {
-      td.textContent = val;
+  const makeTable = (d) => {
+    const cr = (tag) => document.createElement(tag);
+    const tbl = cr("table");
+    for (const name in d) {
+      const val = d[name];
+      const tr = cr("tr");
+      tbl.appendChild(tr);
+      const th = cr("th");
+      th.textContent = name;
+      th.style.whiteSpace = "nowrap";
+      tr.appendChild(th);
+      const td = cr("td");
+      td.style.minWidth = "8em";
+      td.style.wordBreak = "break-all";
+      
+      // 画像データかどうかをチェック
+      if (val.match(/\.(jpeg|jpg|gif|png|bmp)$/i)) {
+        const img = cr("img");
+        img.src = `icon/${val}`; // 画像のパスを設定
+        img.style.maxWidth = "300px"; // 画像の最大幅を指定
+        img.style.maxHeight = "168px"; // 画像の最大高さを指定
+        td.appendChild(img);
+      } else if (val.match(/<a href=(.+)>(.+)<\/a>/)) {
+        const n = val.match(/<a href=(.+)>(.+)<\/a>/);
+        const url = n[1];
+        const cap = n[2];
+        td.innerHTML = `<a href=${url}>${cap}</a>`;
+      } else if (val.startsWith("https://") || val.startsWith("http://")) {
+        td.innerHTML = `<a href=${val}>詳細</a>`;
+      } else {
+        td.textContent = val;
+      }
+      
+      tr.appendChild(td);
     }
-    
-    tr.appendChild(td);
-  }
-  return tbl;
-};
+    return tbl;
+  };
 
 
   window.onload = async () => {
