@@ -358,6 +358,9 @@
     const inp = document.createElement("input");
     inp.type = "text";
     inp.placeholder = "フィルタ";
+    inp.style.gridArea = "filter";
+    inp.style.width = "80%";
+    inp.style.justifySelf = "center";
     inp.oninput = () => {
       const key = inp.value;
       const isMatch = (d) => {
@@ -377,7 +380,7 @@
         }
       }
     };
-    drawerItems.appendChild(inp);
+    header.appendChild(inp);
 
     // 現在地を監視してピン/マップを動かす
     const watchGPS = new CheckBox("現在地追従モード")
@@ -411,7 +414,6 @@
 
     // footer
     const links = [
-      { text: "データ編集や閲覧はGitHubで", url: "https://github.com/code4fukui/kidssafe-okamoto/" },
       { text: "アイコン CC BY okiku.graphic", url: "https://www.instagram.com/okame.graphic/" },
     ];
     for (const link of links) {
