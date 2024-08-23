@@ -367,17 +367,6 @@
       layers.push([d.name, await showIcons(list, d.icon)]);
     }
 
-    if (lls.length) {
-      map.fitBounds(lls);
-    }
-    // showSizeCache();
-
-    // for (const point of accidents){
-    //     const marker = L.icon([parseFloat(point.緯度), parseFloat(point.経度)],
-    //     { icon: L.spriteIcon(point.color) });
-    // }
-    //     marker.addTo(map);
-
     //通学路 geojson
     const roadLayer = L.layerGroup();
     const geojsonurl = "./schoolzone.geojson";
@@ -396,6 +385,18 @@
     roadLayer.addLayer(schoolzone);
     roadLayer.addTo(map);
     layers.push(["通学路", roadLayer]);
+
+    // マップ全体に表示
+    if (lls.length) {
+      map.fitBounds(lls);
+    }
+    // showSizeCache();
+
+    // for (const point of accidents){
+    //     const marker = L.icon([parseFloat(point.緯度), parseFloat(point.経度)],
+    //     { icon: L.spriteIcon(point.color) });
+    // }
+    //     marker.addTo(map);
 
     // レイヤー選択
     {
