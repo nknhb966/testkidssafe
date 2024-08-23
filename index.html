@@ -379,23 +379,23 @@
     //     marker.addTo(map);
 
     //通学路 geojson
-    const roadLayer = L.layerGroup();
-    const geojsonurl = "./schoolzone.geojson";
-    // console.log(geojsonurl);
-    const geojson = await (await fetch(geojsonurl)).json();
-    // console.log(geojson);
-    const schoolzone = L.geoJson(geojson, {
-      style: () => {
-        return {
-          color: "#ff0000",
-          opacity: 1,
-          weight: 5,
-        };
-      },
-    });
-    roadLayer.addLayer(schoolzone);
-    roadLayer.addTo(map);
-    layers.push(["通学路", roadLayer]);
+    // const roadLayer = L.layerGroup();
+    // const geojsonurl = "./schoolzone.geojson";
+    // // console.log(geojsonurl);
+    // const geojson = await (await fetch(geojsonurl)).json();
+    // // console.log(geojson);
+    // const schoolzone = L.geoJson(geojson, {
+    //   style: () => {
+    //     return {
+    //       color: "#ff0000",
+    //       opacity: 1,
+    //       weight: 5,
+    //     };
+    //   },
+    // });
+    // roadLayer.addLayer(schoolzone);
+    // roadLayer.addTo(map);
+    // layers.push(["通学路", roadLayer]);
 
     // レイヤー選択
     {
