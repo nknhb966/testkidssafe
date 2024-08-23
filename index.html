@@ -378,6 +378,25 @@
     // }
     //     marker.addTo(map);
 
+    //通学路 geojson
+    const roadLayer = L.layerGroup();
+    const geojsonurl = "./schoolzone.geojson";
+    // console.log(geojsonurl);
+    const geojson = await (await fetch(geojsonurl)).json();
+    // console.log(geojson);
+    const schoolzone = L.geoJson(geojson, {
+      style: () => {
+        return {
+          color: "#ff0000",
+          opacity: 1,
+          weight: 5,
+        };
+      },
+    });
+    roadLayer.addLayer(schoolzone);
+    roadLayer.addTo(map);
+    layers.push(["通学路", roadLayer]);
+
     // レイヤー選択
     {
       for (const layer of layers) {
@@ -400,25 +419,6 @@
         };
       }
     }
-
-    //通学路 geojson
-    const roadLayer = L.layerGroup();
-    const geojsonurl = "./schoolzone.geojson";
-    // console.log(geojsonurl);
-    const geojson = await (await fetch(geojsonurl)).json();
-    // console.log(geojson);
-    const schoolzone = L.geoJson(geojson, {
-      style: () => {
-        return {
-          color: "#ff0000",
-          opacity: 1,
-          weight: 5,
-        };
-      },
-    });
-    roadLayer.addLayer(schoolzone);
-    roadLayer.addTo(map);
-    layers.push(["通学路", roadLayer]);
 
     // 現在地を監視してピン/マップを動かす
     const watchGPS = new CheckBox("現在地追従モード")
