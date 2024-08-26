@@ -76,13 +76,18 @@
       
       // 画像データかどうかをチェック
       if (val.match(/\.(jpeg|jpg|gif|png|bmp)$/i)) {
+        const imgLink = cr("a");
+        imgLink.href = `./photo/${val}`;
+        imgLink.target = "_blank";
         const img = cr("img");
         img.src = `./photo/${val}`; // 画像のパスを設定
         // img.src = `https://code4fukui.github.io/kidssafe-okamoto/icon/${val}`; // 画像のパスを設定
         // img.src = `https://nknhb966.github.io/artest2/kokufuhakkutsu2/${val}`; // 画像のパスを設定
         img.style.width = "100%"; // セル幅に合わせて画像を表示
         img.style.height = "auto"; // アスペクト比を保つ
-        td.appendChild(img);
+        // td.appendChild(img);
+        imgLink.appendChild(img);
+        td.appendChild(imgLink);
       } else if (val.match(/<a href=(.+)>(.+)<\/a>/)) {
         const n = val.match(/<a href=(.+)>(.+)<\/a>/);
         const url = n[1];
