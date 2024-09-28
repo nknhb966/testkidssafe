@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>敦賀市の施設情報</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>敦賀市の施設情報</h1>
+
+<table id="facilityTable">
+    <thead>
+        <tr>
+            <th>施設名</th>
+            <th>電話番号</th>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>営業時間</th>
+            <th>休日</th>
+            <th>ウェブサイト</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- データがここに挿入されます -->
+    </tbody>
+</table>
+
+<script>
+    // データを取得する関数
+    async function fetchFacilityData() {
+        const response = await fetch('https://linkdata.org/download/rdf1s1075i/link/facility_of_tsuruga_05.txt');
+        const data = await response.text();
+        processData(data);
+    }
+
+    // データを処理してテーブルに表示する関数
+    function processData(data) {
+        const rows = data.split('\n').slice(14); // ヘッダー行をスキップ
+        const tableBody = document.querySelector('#facilityTable tbody');
+
+        rows.forEach(row => {
+            const columns = row.split('\t');
+            if (columns.length > 1) { // 有効な行か確認
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${columns[1]}</td>
+                    <td>${columns[2]}</td>
+                    <td>${columns[3]}</td>
+                    <td>${columns[4]}</td>
+                    <td>${columns[5]}</td>
+                    <td>${columns[6]}</td>
+                    <td><a href="${columns[7]}" target="_blank">リンク</a></td>
+                `;
+                tableBody.appendChild(newRow);
+            }
+        });
+    }
+
+    // ページが読み込まれたらデータを取得
+    window.onload = fetchFacilityData;
+</script>
+
+</body>
+</html>
